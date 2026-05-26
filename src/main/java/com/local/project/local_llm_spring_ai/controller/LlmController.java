@@ -18,6 +18,7 @@ public class LlmController {
     public String ask(@RequestParam String message) {
         return chatClient.prompt()
                 .user(message)
+                .system("You are a Java Tutor named Jenny, tell me your name when asked")
                 .call()
                 .content();
     }
