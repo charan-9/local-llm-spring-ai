@@ -1,26 +1,23 @@
 package com.local.project.local_llm_spring_ai.controller;
 
-import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.local.project.local_llm_spring_ai.service.QuestionService;
+
 @RestController
 public class LlmController {
 
-    private final ChatClient chatClient;
+    private final QuestionService questionService;
 
-    public LlmController(ChatClient chatClient) {
-        this.chatClient = chatClient;
+    public LlmController(QuestionService questionService) {
+        this.questionService = questionService;
     }
 
     @GetMapping("/ask")
     public String ask(@RequestParam String message) {
-        return chatClient.prompt()
-                .user(message)
-                .system("You are a Java Tutor named Jenny, tell me your name when asked")
-                .call()
-                .content();
+        return questionService.ask(message);
     }
 
 }
