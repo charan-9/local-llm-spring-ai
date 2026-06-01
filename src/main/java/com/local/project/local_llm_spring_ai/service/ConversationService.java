@@ -21,7 +21,7 @@ public class ConversationService {
     private final ChatMessageRepository chatMessageRepository;
 
     public String chat(ChatRequest request) {
-        List<ChatMessage> history = chatMessageRepository.findBySessionIdOrderByCreatedAtAsc(request.getSessionId());
+        List<ChatMessage> history = chatMessageRepository.findRecentMessages(request.getSessionId());
         List<Message> messages = new ArrayList<>();
         messages.add(new SystemMessage("""
                 You are a helpful AI assistant.
