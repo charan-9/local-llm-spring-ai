@@ -30,8 +30,7 @@ public class ConversationService {
         for (ChatMessage chat : history) {
             if (chat.getRole().equals("user")) {
                 messages.add(new UserMessage(chat.getContent()));
-            }
-            if (chat.getRole().equals("assistant")) {
+            } else if (chat.getRole().equals("assistant")) {
                 messages.add(new AssistantMessage(chat.getContent()));
             }
 
@@ -54,6 +53,12 @@ public class ConversationService {
                 .createdAt(LocalDateTime.now())
                 .build());
         return response;
+    }
+
+    public List<ChatMessage> getChatMessages(String sessionId) {
+        List<ChatMessage> history = chatMessageRepository.findRecentMessages(sessionId);
+        System.out.println(history);
+        return history;
     }
 
 }
