@@ -8,3 +8,9 @@ public class EmailRequest {
     private String tone;
     private String topic;
 }
+
+// {
+// "emailType": "Leave Request",
+// "tone": "Professional",
+// "topic": "Medical leave for 3 days"
+// }
